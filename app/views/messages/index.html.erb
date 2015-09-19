@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MessageBoard</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
 <div class="panel panel-default">
   <div class="panel-heading">
     メッセージ一覧
@@ -6,7 +17,8 @@
   <div class="panel-body">
     <% @messages.each do |message| %>
       <span class="label label-info"><%= message.name %></span>
-      <%= message.body %>
+        <%= message.body %>
+        (<%= link_to "edit" , edit_message_path(message) %>)
       <br>
     <% end %>
   </div>
@@ -14,3 +26,15 @@
 
 <% #部分テンプレートを読み込んでいる %>
 <%= render 'form' %>
+
+<div class="container">
+    <% if notice %>
+      <div class="alert alert-info">
+        <%= notice %>
+      </div>
+    <% end %>
+    
+    <%= yield %>
+  </div>
+</body>
+</html>
