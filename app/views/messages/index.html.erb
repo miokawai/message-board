@@ -1,22 +1,34 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
+ <center>  <%= image_tag ("Marianne-logo.png") %></center>
+
+<div class="panel panel-danger">
+  <div class="alert alert-danger" >
     メッセージ一覧
   </div>
-    
   <div class="panel-body">
     <% @messages.each do |message| %>
-      <span class="label label-info"><%= message.name %></span>
+      <span class="label label-danger"><%= message.name %></span>
       <%= message.body %>
       <br>
     <% end %>
   </div>
 </div>
+<%= form_for(Message.new)do |f| %>
+<label>名前</label>
+<br>
+  <%= f.text_field :name, class:"panel panel-danger" %>
 
-<%= form_for(Message.new) do |f| %>
-  名前:
-  <%= f.text_field :name %>
-
-  内容:
-  <%= f.text_field :body %>
-  <%= f.submit class: "btn btn-sm btn-primary" %>
+<br>
+  <label>内容</label>
+<br>
+<%= f.text_area :body, :size =>"30x2",class:"panel panel-danger" %> 
+<br>  
+<br>
+  <%= f.submit class: "btn btn-sm btn-danger" %>
+<br>
+<br>
+   <nav>
+  <ul class="pager">
+  <li><%= link_to  "Home","/" %></li>
+  </ul>
+  </nav>
 <% end %>
